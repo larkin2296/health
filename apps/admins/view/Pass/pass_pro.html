@@ -52,8 +52,10 @@
     <div id="pagecount"></div>
 </div>
 <div class="haxi_data">
-        <div>
-            
+        <div class="d_title"><img src="__static__/images/close.png" /></div>
+        <div class="data_show">
+            <ul>
+            </ul>
         </div>
 </div>
 </body>
@@ -107,7 +109,7 @@
             data: {'pageNum':page-1,'arr':params},
             dataType:'json',
             beforeSend:function(){
-//            $("#result_msg ul").append("<li id='loading'>loading...</li>");//显示加载动画
+//           $("#result_msg ul").append("<li id='loading'>loading...</li>");//显示加载动画
             },
             success:function(json){
                 $(".result_msg").empty();//清空数据区
@@ -125,10 +127,12 @@
                     htm += "<td>"+array['chain_num']+"</td>";
                     htm += "<td>"+array['chain_department']+"</td>";
                     htm += "<td>"+array['chain_lesion']+"</td>";
-                    htm += "<td>"+array['archives_modify']+"</td>";
+
                     if(array['archives_modify'] == '已修改'){
+                        htm += "<td style='color:red;font-weight:bold'>"+array['archives_modify']+"</td>";
                         htm += "<td>"+"<input type='button' class='show_d' onclick='show_data("+array['chain_id']+")' value='查看信息'/>"+"</td>";
                     }else{
+                        htm += "<td>"+array['archives_modify']+"</td>";
                     htm += "<td>"+''+"</td>";
                     }
                     htm += "</tr>";
@@ -182,5 +186,29 @@
             }
         });
     }
+    function show_data(id){
+        $.ajax({
+            type: 'POST',
+            url: "{:url('pass/show_hash')}",
+            data: {'id':id},
+            dataType:'json',
+            success:function(data){
+                htm = '';
+                $.each(data,function(i,val){
+                    htm += '<li>被修改的哈希值：'+ val.chain_hash + '<br/>修改者id：'+val.admin_name+'<br />修改时间：'+val.update_time+'</li>';
+                });
+                $('.haxi_data ul').append(htm);
+                return;
+            },
+            error:function(){
+                alert("数据加载失败");
+            }
+        });
+        $('.haxi_data').css('display','block');
+    }
+    $('.d_title img').click(function(){
+        $('.haxi_data ul').empty();
+        $('.haxi_data').css('display','none');
+    })
 </script>
 </script>

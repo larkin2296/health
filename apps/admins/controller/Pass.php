@@ -6,6 +6,7 @@ use think\Db;
 use think\Request;
 use think\Query;
 use think\View;
+use think\cache\driver\Redis;
 
 
 class Pass extends controller{
@@ -17,6 +18,20 @@ class Pass extends controller{
         return $this->fetch('pass_index');
     }
     public function pass_pro(){
+        $config = [
+            'host'       => '47.93.61.134',
+            'port'       => 6379,
+            'password'   => '',
+            'select'     => 0,
+            'timeout'    => 0,
+            'expire'     => 0,
+            'persistent' => false,
+            'prefix'     => '',
+        ];
+
+        $Redis=new Redis($config);
+        //$Redis->set("2","test");
+//        dump($Redis->get(2));
         $page = 0;
         $total = DB::name("health_chain")
             //->column('chain_id');
@@ -106,5 +121,25 @@ class Pass extends controller{
         }
         $arr['list'] = $data;
         echo json_encode($arr); //输出JSON数据
+    }
+    public function show_hash(){
+        $arr = array();
+        $id = $_POST['id'];
+        $chainMsg = Db::table('health_chain')->where(['chain_id'=>$id])->find();
+        $chainStr = implode($chainMsg);
+        $chainHash = Db::name('health_newchain')->where(['chain_id'=>$id])->select();
+        foreach($chainHash as &$val){
+            $res = password_verify ($chainStr,$val['chain_hash']);
+            //if($res == true){
+            $name = Db::name('health_user')->where(['id'=>$val['admin_id']])->column('username');
+            $val['admin_name'] = $name;
+            $time = date('Y-m-d H:i:s',$val['update_time']);
+            $val['update_time'] = $time;
+                $arr[] = $val;
+           // }
+        }
+        return $arr;
+
+        //$res = password_verify ( $chainStr , string $hash )
     }
 }

@@ -9,7 +9,7 @@ use think\View;
 
 
 class Pass extends controller{
-	function _construct(){
+    function _construct(){
         parent::_construct();
         $this -> view -> replace(['__PUBLIC__' => '/static',]);
     }
@@ -19,8 +19,8 @@ class Pass extends controller{
     public function pass_pro(){
         $page = 0;
         $total = DB::name("health_chain")
-                    //->column('chain_id');
-                    ->count();//总记录数
+            //->column('chain_id');
+            ->count();//总记录数
         $pageSize = 6; //每页显示数
         $totalPage = ceil($total/$pageSize); //总页数
 
@@ -30,9 +30,9 @@ class Pass extends controller{
         $arr['pageSize'] = $pageSize;
         $arr['totalPage'] = $totalPage;
         $query = DB::name("health_chain")
-                //->group('chain_num')
-                ->limit($startPage,$pageSize)
-                ->select();//查询分页数据
+            //->group('chain_num')
+            ->limit($startPage,$pageSize)
+            ->select();//查询分页数据
         //$row=mysql_fetch_array($query);
         $i = 0;
         foreach($query as $key=>$val){
@@ -70,6 +70,10 @@ class Pass extends controller{
             if(!empty($get[1])){
                 if($get[0] == 'chain_department' || $get[0] == 'chain_lesion' || $get[0] == 'chain_num'){
                     $res[$get[0]] = array('like','%'.$get[1].'%');
+                }else if($get[0] == 'date_start'){
+                    $res['chain_time'] = array('>=',strtotime($get[1]));
+                }else if($get[0] == 'date_end'){
+                    $res['chain_time'] = array('<',strtotime($get[1]));
                 }else{
                     $res[$get[0]] = $get[1];
                 }
@@ -82,8 +86,8 @@ class Pass extends controller{
         $total = DB::name('health_chain')
             ->where($res)
             ->count();
-            //->group('chain_num')
-            //->count('distinct chain_id');
+        //->group('chain_num')
+        //->count('distinct chain_id');
         $pageSize = 6; //每页显示数
         $totalPage = ceil($total/$pageSize); //总页数
         $startPage = $page*$pageSize; //开始记录

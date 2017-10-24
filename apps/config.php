@@ -247,6 +247,7 @@ return [
         '__static__'=>dirname($_SERVER['SCRIPT_NAME']).'admin/admins',
         //或者
         '__static__'=>think\Url::build('/').'admin/admins',
+        '__login__'=>dirname($_SERVER['SCRIPT_NAME']).'admin/logins',
     ],
 //    'go_fuc_str' => [
 //        '__fuc__'=>dirname($_SERVER['SCRIPT_NAME']),

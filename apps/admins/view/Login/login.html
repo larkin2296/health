@@ -1,56 +1,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>欢迎登录医疗网后台管理系统</title>
-    <link href="admin/logins/css/style.css" rel="stylesheet" type="text/css" />
+    <link type="text/css" href="admin/logins/css/index.css" rel="stylesheet" />
     <script language="JavaScript" src="admin/logins/js/jquery.js"></script>
-    <script src="admin/logins/js/cloud.js" type="text/javascript"></script>
     <script src="admin/logins/js/md5.js" type="text/javascript"></script>
-    <script language="javascript">
-        $(function(){
-            $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
-            $(window).resize(function(){
-                $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
-            })
-        });
-    </script>
-
+    <link rel="stylesheet" href="admin/logins/css/jquery.slider.css" />
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="admin/logins/js/jquery.slider.min.js"></script>
 </head>
-
-<body style="background-color:#1c77ac; background-image:url(__PUBLIC__/images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
-
-
-
-<div id="mainBody">
-    <div id="cloud1" class="cloud"></div>
-    <div id="cloud2" class="cloud"></div>
-</div>
-
-
-<div class="logintop">
-    <span>欢迎登录医疗后台管理界面平台</span>
-    <ul>
-        <li><a href="/">回首页</a></li>
-        <li><a href="#">帮助</a></li>
-        <li><a href="#">关于</a></li>
-    </ul>
-</div>
-
-<div class="loginbody">
-
-    <span class="systemlogo"></span>
-
-    <div class="loginbox">
-
-        <ul>
-            <li><input name="" type="text" class="loginuser" value="admin" maxlength="24" id="j_username" onBlur="return checkUsername()" placeholder="请输入用户名" onclick="JavaScript:this.value=''"/></li><span id="j_usernameErrorDiv"></span>
-            <li><input name="" type="password" class="loginpwd" value="密码" maxlength="24" id="j_password" onBlur="return checkPassword()" placeholder="请输入密码" onclick="JavaScript:this.value=''"/></li><span id="j_passwordErrorDiv"></span>
-            <li><input name="" type="button" class="loginbtn" value="登录" onclick="loginCheck();"/><label><input name="" type="checkbox" value="" checked="checked" id="ifRemember"/>记住密码</label><label><a href="pwd_list">忘记密码？</a></label><label><a href="login_index">立即注册</a></label></li><span id="j_yzmErrorDiv"></span>
-        </ul>
+<body>
+    <div class="login_left">
+        <div class="login_left_main">
+            <div class="left_main_pic"></div>
+            <p>欢迎使用HCC</p><p style="padding-bottom:5%;">信息管理系统界面</p>
+            <span>Welcome to use HCC<br/></span>
+                <span>Interface of information management system<br/></span>
+        </div>
+        <div class="login_left_bottom">
+            <li>帮助</li>
+            <li>关于</li>
+            <li>返回首页</li>
+        </div>
     </div>
+    <div class="loginbody">
+        <p class="systemlogo">登录到您的账户</p>
 
-</div>
+        <div class="loginbox">
+                <li style="padding-top:5.3%;">
+                    <p>用户名</p>
+                    <input name="" type="text" class="loginuser" value="admin" maxlength="24" id="j_username" onBlur="return checkUsername()" placeholder="请输入用户名" onclick="JavaScript:this.value=''"/>
+                </li>
+                <span id="j_usernameErrorDiv"></span>
+                <li>
+                    <p>密码</p>
+                    <input name="" type="password" class="loginpwd" value="密码" maxlength="24" id="j_password" onBlur="return checkPassword()" placeholder="请输入密码" onclick="JavaScript:this.value=''"/>
+                </li>
+                <span id="j_passwordErrorDiv"></span>
+                <li>
+                   <label>
+                       <div class="check">
+                       <input type="checkbox" name="get_pass" class="get_pass" />
+                        </div><span class="lab_1">记住密码</span><div id="slider1" class="slider" style="float:right;margin-right:18%;"></div><input type="hidden" id="result1" value="" /></label>
+                </li>
+                <span id="j_yzmErrorDiv"></span>
+        </div>
+        <div class="login_in">
+            <label><input name="" type="button" class="loginbtn" value="登录" onclick="loginCheck();"/></label><label><a href="pwd_list">忘记密码？</a></label>
+        </div>
+        <div class="login_bottom">
+            <label><span>未拥有账号?</span><a href="login_index">注册</a></label>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function(){
+        var flag = 1;
+        $(".check").click(function(){
+            if(flag == 1){
+                $(".check").addClass('ck');
+                flag = 0;
+            } else{
+                $(".check").removeClass('ck');
+                flag = 1;
+            }
+        })
+    });
+</script>
 <script>
     var v1 = false;
     var v2 = false;
@@ -126,7 +142,7 @@
     function loginCheck()
     {
 
-        if (v1&&v2)
+        if (v1 && v2)
         {
 
             var username = $("#j_username").val();
@@ -192,10 +208,10 @@
         }
 
     }
+    $("#slider1").slider({
+        callback: function(result) {
+            $("#result1").val(result);
+        }
+    });
 
 </script>
-
-
-<div class="loginbm">医疗后台1.0v</div>
-</body>
-</html>

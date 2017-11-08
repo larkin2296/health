@@ -41,6 +41,9 @@
     #page{
         margin-left: 10%;
     }
+    .check{
+        margin-left:35%;
+    }
 </style>
 <body>
 <div class="panel admin-panel"><!--<a href="" style="float:right; display:none;">添加字段</a>-->
@@ -64,14 +67,11 @@
 </html>
 <script>
     function check_check(obj){
-        var flag = 1;
-            if(flag == 1){
-                $(obj).addClass('ck');
-                flag = 0;
-            } else{
-                $(obj).removeClass('ck');
-                flag = 1;
-            }
+        if($(obj).attr('class')== 'check ck'){
+            $(obj).removeClass('ck');
+        }else{
+            $(obj).addClass('ck');
+        }
     }
     //加载样式
     //    window.alert = function(){

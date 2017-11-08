@@ -54,14 +54,12 @@
 </html>
 <script>
     function check_check(obj){
-        var flag = 1;
-        if(flag == 1){
-            $(obj).addClass('ck');
-            flag = 0;
-        } else{
+        if($(obj).attr('class')== 'check ck'){
             $(obj).removeClass('ck');
-            flag = 1;
+        }else{
+            $(obj).addClass('ck');
         }
+
     }
     //加载样式
     //    window.alert = function(){

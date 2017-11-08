@@ -13,7 +13,7 @@
     <script src="admin/admins/js/pintuer.js"></script>
     <style>
         .border-bottom{
-            width: 15%;
+            width: 17%;
             height: 5em;
             margin-left: 4%;
         }
@@ -60,7 +60,7 @@
     </tr>
         {volist name="data" id="v"}
     <tr>
-        <td><div class="check"><input type="checkbox" name="check[]" class="get_pass" value="{$v.chain_id}"/></div></td>
+        <td><input type="checkbox" name="check[]"  value="{$v.chain_id}"/></td>
         <td>{$v.chain_title}</td>
         <td>{$v.chain_user}</td>
         <td>{$v.chain_age}</td>
@@ -77,7 +77,7 @@
     </tr>
         {/volist}
 </table>
-<div class="field" style="margin-left: 1190px">
+<div class="field" style="margin-left:7%;">
     <span id="Eerror"></span>
     <!--<input type="checkbox" value="批量删除" onclick="check_del();">-->
     <input type="button" onclick="check_del();"  class="short_button">

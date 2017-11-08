@@ -56,21 +56,21 @@ class Chain extends Common {
             //同时备份到数据库中
             Db::table('health_chash')->insert(['chain_id'=>$Conkey,'chain_hash'=>$chainHash]);
 //            dump($redisUp);die;
-            if($redisUp){
-                //更改入链状态
-                $up = Db::table('health_chain')->where(['chain_id'=>$data['chain_id']])->update(['chain_status'=>0]);
+           if($redisUp){
+               //更改入链状态
+               $up = Db::table('health_chain')->where(['chain_id'=>$data['chain_id']])->update(['chain_status'=>0]);
 //               dump($up);die;
-                if($up){
-                    //入链成功
-                    $res['status']=0;
-                }else{
-                    //入链失败
-                    $res['status']=2;
-                }
-            }else{
-                //1是入链失败，重试
+               if($up){
+                   //入链成功
+                   $res['status']=0;
+               }else{
+                   //入链失败
+                  $res['status']=2;
+               }
+           }else{
+               //1是入链失败，重试
                 $res['status']=1;
-            }
+           }
 
         }
         return $res;
@@ -88,36 +88,36 @@ class Chain extends Common {
         if(array_key_exists('page',$data)){
             unset($data['page']);
         }
-        $where=$this->getWhere($data);
-        if($where){
-            $adc['chain_time'] = [$where['chain_time'][0],$where['chain_time'][1]];
+            $where=$this->getWhere($data);
+            if($where){
+                $adc['chain_time'] = [$where['chain_time'][0],$where['chain_time'][1]];
 //     dump($adc);die;
-            $mvp['chain_status'] = [$where['chain_status'][0],$where['chain_status'][1]];
-            $result = Db::table('health_chain')->where($adc)->where($mvp)->page($page)->limit($page_size)->select();
-            foreach($result as $k=>$v){
-                $time['chain_time'] = date("Y-m-d H:i",$v['chain_time']);
-                $result['data'][] = array_merge($v,$time);
-            }
+                $mvp['chain_status'] = [$where['chain_status'][0],$where['chain_status'][1]];
+                $result = Db::table('health_chain')->where($adc)->where($mvp)->page($page)->limit($page_size)->select();
+                foreach($result as $k=>$v){
+                    $time['chain_time'] = date("Y-m-d H:i",$v['chain_time']);
+                    $result['data'][] = array_merge($v,$time);
+                }
 //                dump($result);die;
-            if(!empty($result)){
-                $params = array(
-                    'total_rows'=>$total,
-                    'method'=>'ajax',
-                    'now_page'=>$page,
-                    'ajax_func_name'=>'page',
-                    'list_rows'=>$page_size,
-                    'parameter'=>http_build_query($data),
-                );
-                $pags = new \test\Page($params);
+                if(!empty($result)){
+                    $params = array(
+                        'total_rows'=>$total,
+                        'method'=>'ajax',
+                        'now_page'=>$page,
+                        'ajax_func_name'=>'page',
+                        'list_rows'=>$page_size,
+                        'parameter'=>http_build_query($data),
+                    );
+                    $pags = new \test\Page($params);
 //            var_dump($pags);die;
-                $result['page']=$pags->show(3);
+                    $result['page']=$pags->show(3);
 //            dump($result);die;
-                $result['status']=1;
-            }else{
-                $result['status']=0;
+                    $result['status']=1;
+                }else{
+                    $result['status']=0;
+                }
+              return $result;
             }
-            return $result;
-        }
 
     }
     /**进行搜索封装**/
@@ -125,14 +125,14 @@ class Chain extends Common {
         $arr = array();
         switch (intval($where['chain_status'])){
             case 0:
-                $arr['chain_status'] = array('eq',0);
-                break;
+            $arr['chain_status'] = array('eq',0);
+            break;
             case 1:
-                $arr['chain_status'] = array('eq',1);
-                break;
+            $arr['chain_status'] = array('eq',1);
+            break;
             case 2:
-                $arr['chain_status'] = array('neq',3);
-                break;
+            $arr['chain_status'] = array('neq',3);
+            break;
             default:
         }
         $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y'));
@@ -145,25 +145,25 @@ class Chain extends Common {
         $Tendmonth = mktime(23,59,59,date('m'),date('t'),date('Y'));
         $Alltime =  mktime(0,0,0,date('m')-3+1,1,date('Y')-10);
         switch(intval($where['chain_time'])){
-            case 0:
-                //当天的时间
-                $arr['chain_time'] = ['between',[$beginToday,$endToday]];
-                break;
-            case 1:
-                //当前一周的时间
-                $arr['chain_time'] = ['between',[$beginLastweek,$endLastweek]];
-                break;
-            case 2:
-                //当前一个月的时间
-                $arr['chain_time'] = ['between',[$beginThismonth,$endThismonth]];
-                break;
-            case 3:
-                //当前三个月的的时间 （算上当前的月份）
-                $arr['chain_time'] = ['between',[$Threemonth,$Tendmonth]];
-                break;
-            case 4:
-                $arr['chain_time'] = ['between',[$Alltime,$endToday]];
-            default:
+             case 0:
+            //当天的时间
+             $arr['chain_time'] = ['between',[$beginToday,$endToday]];
+             break;
+             case 1:
+            //当前一周的时间
+             $arr['chain_time'] = ['between',[$beginLastweek,$endLastweek]];
+             break;
+             case 2:
+             //当前一个月的时间
+              $arr['chain_time'] = ['between',[$beginThismonth,$endThismonth]];
+              break;
+              case 3:
+              //当前三个月的的时间 （算上当前的月份）
+              $arr['chain_time'] = ['between',[$Threemonth,$Tendmonth]];
+              break;
+              case 4:
+               $arr['chain_time'] = ['between',[$Alltime,$endToday]];
+              default:
         }
         return $arr;
     }
@@ -197,8 +197,8 @@ class Chain extends Common {
             $res='';
             return view('file',['res'=>$res,'data'=>$data,'auto_load'=>$auto_load]);
         }else{
-            $res = '暂时没有数据：)';
-            return view('file',['res'=>$res,'data'=>$data,'auto_load'=>$auto_load]);
+          $res = '暂时没有数据：)';
+          return view('file',['res'=>$res,'data'=>$data,'auto_load'=>$auto_load]);
         }
     }
     public function file_add(){
@@ -223,19 +223,19 @@ class Chain extends Common {
     }
     /**自动归档**/
     public function aotomatic(){
-        //状态为1的时候为OFF 状态为0的时候ON
+    //状态为1的时候为OFF 状态为0的时候ON
         $data = Db::table('health_autoload')->find();
         $arr = array();
         if($data['auto_file']==0){
-            $res = Db::table('health_autoload')->where('id',1)->update(['auto_file'=>1]);
-            if($res){
-                $arr['msg']=1;
-            }
+           $res = Db::table('health_autoload')->where('id',1)->update(['auto_file'=>1]);
+           if($res){
+               $arr['msg']=1;
+           }
         }else if($data['auto_file']==1){
-            $res = Db::table('health_autoload')->where('id',1)->update(['auto_file'=>0]);
-            if($res){
-                $arr['msg']=0;
-            }
+           $res = Db::table('health_autoload')->where('id',1)->update(['auto_file'=>0]);
+           if($res){
+               $arr['msg']=0;
+           }
         }
         return $arr;
     }

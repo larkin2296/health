@@ -6,10 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="renderer" content="webkit">
     <title>病案归档</title>
-    <link rel="stylesheet" href="/admin/admins/css/pintuer.css">
-    <link rel="stylesheet" href="/admin/admins/css/admin.css">
-    <script src="/admin/admins/js/jquery.js"></script>
-    <script src="/admin/admins/js/pintuer.js"></script>
+    <link rel="stylesheet" href="admin/admins/css/pintuer.css">
+    <link rel="stylesheet" href="admin/admins/css/admin.css">
+    <script src="admin/admins/js/jquery.js"></script>
+    <script src="admin/admins/js/pintuer.js"></script>
+    <style>
+        .long_button{
+            background: url('__static__/images/file_medical.png')no-repeat;
+            width: 14%;
+            height: 4em;
+            border:none;
+            margin-left:4%;
+        }
+        .am-pagination{
+            margin-left:4%;
+        }
+    </style>
 </head>
 <body>
 <!--<div class="panel admin-panel">&lt;!&ndash;<a href="" style="float:right; display:none;">添加字段</a>&ndash;&gt;-->
@@ -28,9 +40,9 @@
         <!--<a href="medical_add"><button type="button" class="button border-yellow" id="button"><span class="icon-plus-square-o"></span>病案新增</button></a>-->
     <!--</div>-->
 <!--</div>-->
-<table class="table table-hover text-center" border="2">
-    <tr>
-        <th><button class="checkall">全选</button></th>
+<table class="table table-hover text-center" cellspacing="0" style="margin-top: 11%;line-height: 350%;">
+    <tr style="background-color: #F0F0F0;">
+        <th><button class="checkall" style="border:none;background-color: #F0F0F0;">全选</button></th>
         <th width="100" style="text-align:left; padding-left:20px;">病案编号</th>
         <th>标题</th>
         <th>姓名</th>
@@ -64,14 +76,14 @@
     <span style="margin-left: 45%;font-size: 28px;">{$res}</span>
     <!--<input type="checkbox" value="批量删除" onclick="check_del();">-->
     {if condition="$auto_load.auto_file eq 0"}
-    <div class="field" style="margin-left: 1530px;margin-top: -2px;">
+    <div class="field" style="margin-left: 2%;margin-top: -2px;">
         <span id="Eerror1"></span>
-        <input type="button" onclick="check_up();" value="关闭自动归档" class="button bg-main icon-check-square-o">
+        <input type="button" onclick="check_up();"  class="long_button">
     </div>
     {else/}
     <div class="field" style="margin-left: 1530px;margin-top: -2px;">
         <span id="Eerror"></span>
-        <input type="button" onclick="check_up();" value="开启自动归档" class="button bg-main icon-check-square-o">
+        <input type="button" onclick="check_up();"  class="long_button">
     </div>
     {/if}
     <tr>

@@ -24,7 +24,7 @@
         <li><a href="##" id="a_leader_txt">个人信息</a></li>
         <li id="bread_language">切换语言：<a href="##">中文</a> &nbsp;&nbsp;<a href="##">English</a> </li>
         </ul>
-        <input type="image" src='__static__/images/index_green.png' class="button button-little bg-green" href="index_admin" />&nbsp;&nbsp;<input type="image" src="__static__/images/index_red.png" class="button button-little bg-red" href="logout" />
+        <input type="image" src='__static__/images/index_green.png' class="button button-little bg-green" />&nbsp;&nbsp;<input type="image" src="__static__/images/index_red.png" class="button button-little bg-red"  />
         <img src="__static__/images/Rectangle 16.png" class=" radius-circle rotate-hover" height="100" alt="" />
     </div>
 </div>
@@ -115,6 +115,12 @@
             $(this).addClass("on");
         })
     });
+    $('.bg-green').click(function(){
+        location.href = 'index_admin';
+    })
+    $('.bg-red').click(function(){
+        location.href = 'index_index';
+    })
 </script>
 
 <div class="admin">

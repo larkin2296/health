@@ -157,7 +157,7 @@
                     str+='<td>'+v.user_email+'</td>';
                     str+='<td>'+v.user_tel+'</td>';
                     if(v.user_status == 0)
-                        str+='<td class="block"><input type="button" id="jin_status" date_id = "'+v.id+'" name="jin_status" value="账户禁用" style="border:none;background-color:white;color: red">&nbsp;&nbsp;&nbsp;<a href="admin_role?id='+v.id+'" id="a_style">修改角色</a></td>';
+                        str+='<td class="block"><input type="button" id="jin_status" date_id = "'+v.id+'" name="jin_status" value="账户禁用" style="border:none;background-color:white;color: red">&nbsp;&nbsp;&nbsp;<a href="admin_role?id='+v.id+'" id="a_style" style="color:white;">修改角色</a></td>';
                     else if(v.user_status==1){
                         str+='<td class="block"><input type="button" id="jin_status" date_id = "'+v.id+'" name="jie_status" value="解除禁用" style="border:none;background-color:white;color:springgreen">';
                     }

@@ -97,4 +97,5 @@ return [
     'node_del'=>'admins/Node/node_del',
     'node_uplist'=>'admins/Node/node_uplist',
     'node_update'=>'admins/Node/node_update',
+    'go_clear'=>'admins/Clear/index',
 ];

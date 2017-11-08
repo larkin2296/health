@@ -1,0 +1,83 @@
+body,html{
+    width:100%;
+    height:100%;
+    margin:0px;
+    padding:0px;
+}
+.test div{
+    /*background: red;*/
+}
+.long_button{
+    width: 99.8%;
+    height: 100.9%;
+    background: url(../images/admin_list_pic.png) no-repeat;
+    background-size: contain;
+}
+.medium_input{
+    width: 9.6%;
+    height: 3.3%;
+    background: #FCFCFC;
+    border: 1px solid #E2E2E2;
+    border-radius: 5px;
+}
+.date_input{
+    width: 13%;
+    height: 3.3%;
+    background: #FCFCFC;
+    border: 1px solid #E2E2E2;
+    border-radius: 5px;
+}
+.short_button{
+    width: 5.1%;
+    height: 3.8%;
+    background-size: contain;
+}
+.add_button{
+    width: 9%;
+    height: 5%;
+    background: url(../images/add_button.png) no-repeat;
+    background-size: contain;
+}
+.title{
+    width: 77.8%;
+    height: 4.4%;
+    background: #F0F0F0;
+}
+.check{
+    width:21px;
+    height:21px;
+    background: url('../images/check_no.png') no-repeat;
+    float:left;
+}
+.ck{
+    background: url('../images/Group_3.png') no-repeat;
+}
+.get_pass{
+    width:21px;
+    height:21px;
+    border:none;
+    opacity: 0;
+
+}
+.table_title{
+    width:100%;
+    height:16%;
+    background: #F0F0F0;
+    font-family: PingFangSC-Regular;
+    font-size: 18px;
+    color: #000000;
+    letter-spacing: 0;
+    font-weight:500;
+}
+tr{
+    height:17%;
+    text-align: center;
+    font-family: PingFangSC-Light;
+    font-size: 16px;
+    color: #000000;
+    letter-spacing: 0;
+}
+td{
+    border-top: 1px dotted #B9C5D1;
+    margin-bottom: 0.6%;
+}

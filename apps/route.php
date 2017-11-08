@@ -28,6 +28,7 @@ return [
     'tel_only'=>"admins/Login/tel_only",
     'tel_code'=>"admins/Login/tel_code",
     "user_add"=>"admins/Login/user_add",
+    "email_only"=>"admins/Login/email_only",
     //后台首页
     "index_admin"=>"admins/Mail/index",
     "personal"=>"admins/Mail/personal",
@@ -42,6 +43,16 @@ return [
     "test"=>"admins/Login/test",
     //病案入链
     "chain_list"=>"admins/Chain/index",
+    "chain_search"=>"admins/Chain/search",
+    "chain_block"=>"admins/Chain/block",
+    "chain_uplist"=>"admins/Chain/uplist",
+    "chain_update"=>"admins/Chain/chain_update",
+    "chain_newdate"=>"admins/Chain/newdate",
+    //选择归档
+    "chain_file"=>"admins/Chain/file",
+    "chain_fadd"=>"admins/Chain/file_add",
+    "chain_aotomatic"=>"admins/Chain/aotomatic",
+    "chain_checkchain"=>"admins/Chain/checkchain",
     //病案管理
     'medical_add'=>'admins/Medical/index',
     'department_add'=>"admins/Medical/add",
@@ -50,8 +61,40 @@ return [
     'medical_delall'=>'admins/Medical/deleall',
     'medical_up'=>'admins/Medical/up',
     'medical_update'=>'admins/Medical/update',
-	'pass_index'=>'admins/Pass/index',
-	'pass_result'=>'admins/Pass/go_result',
-	'pass_pro'=>'admins/Pass/pass_pro',
+    'medical_newup'=>"admins/Medical/newup",
+    //9.21 LF 监控查询
+    'pass_index'=>'admins/Pass/index',
+    'pass_result'=>'admins/Pass/go_result',
+    'pass_pro'=>'admins/Pass/pass_pro',
+    //自动加载类
+    'chain_load'=>"admins/Auto/file_index",
+    'chain_loca'=>"admins/Auto/file_chain",
+    //10.09 消息通知
+    'invest_list'=>'admins/Invest/index',
+    //管理员添加
+    'admin_lisd'=>'admins/Admin/admin_lisd',
+    'admin_add'=>'admins/Admin/admin_add',
+    //管理员管理
     'admin_list'=>'admins/Admin/index',
+    'admin_lis'=>'admins/Admin/admin_lis',
+    'admin_jin'=>'admins/Admin/admin_jin',
+    'admin_role'=>'admins/Admin/admin_role',
+    'admin_update'=>'admins/Admin/admin_update',
+    //角色管理
+    'role_add'=>'admins/Role/index',
+    'role_list'=>'admins/Role/role_list',
+    'role_lis'=>'admins/Role/role_lis',
+    'role_update'=>'admins/Role/role_update',
+    'role_up'=>'admins/Role/role_up',
+    //角色添加
+    'role_adds'=>'admins/Role/role_add',
+    'role_del'=>'admins/Role/role_del',
+    //权限管理
+    'node_index'=>'admins/Node/node_index',
+    'node_list'=>'admins/Node/node_list',
+    'node_add'=>'admins/Node/node_add',
+    'node_page'=>'admins/Node/node_page',
+    'node_del'=>'admins/Node/node_del',
+    'node_uplist'=>'admins/Node/node_uplist',
+    'node_update'=>'admins/Node/node_update',
 ];

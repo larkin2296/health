@@ -28,14 +28,14 @@
     至<div class="calendarWarp">
         <input type="text" name="date_end" class='ECalendar' id="date_end"  style='width:200px;' value=""/>
     </div>
-        <input type="button" class="pro_search_button" value="查询"/><input type="button" class="pro_search_clear" value="清空"/>
+        <input type="button" class="pro_search_button" /><input type="button" class="pro_search_clear" />
     </div>
 
 </form>
-<div class="table table-hover text-center" border="1">
+<div class="table table-hover text-center">
     <p>抽查结果</p>
-    <table class="result_msg">
-        <tr>
+    <table class="result_msg" cellspacing="0">
+        <tr style="background: #F0F0F0;">
             <td>姓名</td>
             <td>年龄</td>
             <td>性别</td>
@@ -117,7 +117,7 @@
                 pageSize = json.pageSize; //每页显示条数
                 curPage = page; //当前页
                 totalPage = json.totalPage; //总页数
-                var htm = "<tr><td>姓名</td><td>年龄</td><td>性别</td><td>病案号</td><td>出院科室</td><td>出院病室</td><td>修改状态</td><td>详细信息</td></tr>";
+                var htm = "<tr style='background: #F0F0F0;font-size:15px;font-weight: bold;'><td>姓名</td><td>年龄</td><td>性别</td><td>病案号</td><td>出院科室</td><td>出院病室</td><td>修改状态</td><td>详细信息</td></tr>";
                 var list = json.list;
                 $.each(list,function(index,array){ //遍历json数据列
                     htm += "<tr>";
@@ -130,7 +130,7 @@
 
                     if(array['archives_modify'] == '已修改'){
                         htm += "<td style='color:red;font-weight:bold'>"+array['archives_modify']+"</td>";
-                        htm += "<td>"+"<input type='button' class='show_d' onclick='show_data("+array['chain_id']+")' value='查看信息'/>"+"</td>";
+                        htm += "<td>"+"<input type='button' class='show_d' onclick='show_data("+array['chain_id']+")' />"+"</td>";
                     }else{
                         htm += "<td>"+array['archives_modify']+"</td>";
                     htm += "<td>"+''+"</td>";
